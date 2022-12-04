@@ -1,9 +1,10 @@
 import os
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
 
-UPLOAD_FOLDER = 'C:/lette/OneDrive/Desktop/Flask'
+
+UPLOAD_FOLDER = 'C:\\Users\\lette\\OneDrive\\Desktop\\Flask'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -18,12 +19,13 @@ def upload():
         file = request.files['file']
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return flash('File Uploaded Successfully')
+        return 'File is uploaded'
     
-    return flash('File not up')
+    return 'File not up'
 
 
 
 
 if __name__ == "__main__":
+    app.secret_key = 'super secret key'
     app.run(debug=True)
