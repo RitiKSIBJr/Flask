@@ -13,6 +13,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return render_template('index.html')
 
+@app.route("/urluploader", methods=['GET', 'POST'])
+def url_uploader():
+    return render_template('url.html')
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == "POST":
@@ -22,6 +26,18 @@ def upload():
         return 'File is uploaded'
     
     return 'File not up'
+
+@app.route('/urlinput', methods=['GET', 'POST'])
+def get_url():
+    if request.method == "POST":
+        url = str(request.form.get("url"))
+        if url:
+            with open('urls.txt', 'a') as file:
+                file.write(url + '\n')
+            return url
+        else:
+            return 'URL is empty'
+    
 
 
 

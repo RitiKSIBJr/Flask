@@ -3,12 +3,18 @@
     <head>
         <title>Flask Folder</title>
     </head>
+    <style>
+        *{
+            text-align: center;
+        }
+    </style>
     
     <body>
         <h1>Flask Floder</h1>
         <form method="POST" enctype="multipart/form-data" action = "http://localhost:5000/upload">
-            <input type="file" name="file">
+            <input type="file" name="file"><br><br>
             <input type="submit" value="Upload">
         </form>
+        <hr>
     </body>
 </html>
