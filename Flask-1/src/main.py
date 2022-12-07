@@ -35,16 +35,13 @@ def get_url():
         url = request.form.get("url")
         response = requests.get(url)  
 
-        return send_from_directory(dir,path='static/9376.jpg')
 
-        # with open('img', 'wb+') as f:
-        #     if response.content in f:
-        #         return response.content
-        #     else:
-        #         f.write(response.content)  
-
-        #         return app.send_static_file('C:\\Users\\lette\\OneDrive\\Desktop\\Flask\\Flask-1\img')
+        with open('src/static/fb.ico', 'wb+') as f:
+            f.write(response.content)
+           
         
+        return send_from_directory(dir,path='static/img')
+
     else: 
         return 'Null'
 
