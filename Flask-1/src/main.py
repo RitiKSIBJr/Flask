@@ -1,11 +1,12 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, send_from_directory
 from werkzeug.utils import secure_filename
 import requests
 
 
 
-UPLOAD_FOLDER = 'C:\\Users\\lette\\OneDrive\\Desktop\\Flask'
+UPLOAD_FOLDER = 'C:\\Users\\lette\\OneDrive\\Desktop\\Flask\\Flask-1\\src'
+dir = 'C:\\Users\\lette\\OneDrive\\Desktop\\Flask\\Flask-1\\src'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -32,14 +33,18 @@ def upload():
 def get_url():
     if request.method == "POST":
         url = request.form.get("url")
-        print(url)
-        
-        response = requests.get(url)
+        response = requests.get(url)  
 
-        with open('img', 'wb') as f:
-            f.write(response.content)    
-        return 'Completed'
-    
+        return send_from_directory(dir,path='static/9376.jpg')
+
+        # with open('img', 'wb+') as f:
+        #     if response.content in f:
+        #         return response.content
+        #     else:
+        #         f.write(response.content)  
+
+        #         return app.send_static_file('C:\\Users\\lette\\OneDrive\\Desktop\\Flask\\Flask-1\img')
+        
     else: 
         return 'Null'
 
